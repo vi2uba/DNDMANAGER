@@ -52,25 +52,13 @@ class CampaignController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'title' => 'required',
+            'name' => 'required',
             'description' => 'required',
-            'goal' => 'required',
-            'end_date' => 'required',
-            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         $campaign = Campaign::find($id);
-
-        if ($request->hasFile('image')) {
-            $imageName = time().'.'.$request->image->extension();
-            $request->image->move(public_path('images'), $imageName);
-            $campaign->image = $imageName;
-        }
-
-        $campaign->title = $request->title;
+        $campaign->name = $request->name;
         $campaign->description = $request->description;
-        $campaign->goal = $request->goal;
-        $campaign->end_date = $request->end_date;
         $campaign->save();
 
         return redirect()->route('campaign.index')->with('success', 'Campaign updated successfully.');
