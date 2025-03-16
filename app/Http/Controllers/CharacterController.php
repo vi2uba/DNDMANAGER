@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Campaign;
 use App\Models\Character;
 use Illuminate\Http\Request;
+use App\Models\Inventory;
 
 class CharacterController extends Controller
 {
@@ -44,9 +45,18 @@ class CharacterController extends Controller
         ]);
 
         $validated['user_id'] = auth()->id();
-        
-        Character::create($validated);
 
+        // Create the character and store it in a variable
+        $character = Character::create($validated);
+        
+        // Get the newly created character's ID
+        $character_id = $character->id;
+        
+        // Automatically Create Inventory for the Character
+        $inventory = new Inventory();
+        $inventory->character_id = $character_id;
+        $inventory->save();
+        
         return redirect()->route('character.index', $request->campaign_id)
             ->with('success', 'Character created successfully');
     }
