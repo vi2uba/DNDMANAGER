@@ -1,40 +1,29 @@
-@extends('layouts.app', ['page' => __('Campaign Details'), 'pageSlug' => 'campaign'])
+@extends('layouts.app', ['page' => __('Sessions'), 'pageSlug' => 'sessions'])
 
 @section('content')
 <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-12">
         <div class="card">
             <div class="card-header">
-                <h5 class="title">{{ $campaign->name }}</h5>
-                @if(auth()->user()->id == $campaign->dungeon_master_id)
-                    <a href="{{ route('sessions.create', $campaign->id) }}" class="btn btn-sm btn-primary float-right">Schedule Session</a>
-                @endif
-            </div>
-            <div class="card-body">
-                <p>{{ $campaign->description }}</p>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="card-header">
-                <h5 class="title">Sessions</h5>
+                <h4 class="card-title">{{ __('Game Sessions') }}</h4>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table">
                         <thead>
                             <tr>
+                                <th>Campaign</th>
                                 <th>Date & Time</th>
-                                <th>Players</th>
                                 <th>Status</th>
-                                <th></th>
+                                <th>Players</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($campaign->sessions()->orderBy('session_date', 'desc')->get() as $session)
+                            @foreach($sessions as $session)
                             <tr>
+                                <td>{{ $session->campaign->name }}</td>
                                 <td>{{ $session->session_date }}</td>
-                                <td>{{ $session->attendees->count() }} players</td>
                                 <td>
                                     @if($session->session_date < now())
                                         <span class="badge badge-secondary">Past</span>
@@ -42,6 +31,7 @@
                                         <span class="badge badge-primary">Upcoming</span>
                                     @endif
                                 </td>
+                                <td>{{ $session->attendees->count() }} players</td>
                                 <td>
                                     <a href="{{ route('sessions.show', $session->id) }}" class="btn btn-sm btn-primary">View</a>
                                 </td>

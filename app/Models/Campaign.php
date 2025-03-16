@@ -23,4 +23,9 @@ class Campaign extends Model
     {
         return $this->hasMany(DiceRoll::class);
     }
+
+    public function sessions()
+    {
+        return $this->hasMany(Campaign_Session::class);
+    }
 }

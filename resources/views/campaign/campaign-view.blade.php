@@ -18,6 +18,7 @@
                                     <th scope="col">Campaign Name</th>
                                     <th scope="col">Description</th>
                                     <th scope="col">Created At</th>
+                                    <th scope="col">Action</th>
                                     <th scope="col"></th>
                                 </tr>
                             </thead>
@@ -29,6 +30,7 @@
                                             <a href="">{{ $campaign->description }}</a>
                                         </td>
                                         <td>{{ $campaign->created_at->format('F j, Y - g:i A') }}</td>
+                                        <td><a href="{{ route('campaign.show', $campaign->id) }}" class="btn btn-sm btn-primary">{{ __('Show Campaign') }}</a></td>
 
                                         <td class="text-right">
                                             <div class="dropdown">

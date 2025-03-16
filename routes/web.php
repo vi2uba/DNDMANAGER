@@ -9,6 +9,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\SessionController;
 use App\Http\Controllers\UserController;
 
 
@@ -32,6 +33,11 @@ Route::get('/campaign/{id}', [CampaignController::class, 'show'])->name('campaig
 Route::get('/campaign/{id}/edit', [CampaignController::class, 'edit'])->name('campaign.edit');
 Route::put('/campaign/{id}', [CampaignController::class, 'update'])->name('campaign.update');
 Route::delete('/campaign/{id}', [CampaignController::class, 'destroy'])->name('campaign.destroy');
+
+//Campaign Sessions Route
+Route::get('/campaign/{campaign}/sessions/create', [SessionController::class, 'create'])->name('sessions.create');
+Route::post('/campaign/{campaign}/sessions', [SessionController::class, 'store'])->name('sessions.store');
+Route::put('/sessions/{session}/respond', [SessionController::class, 'respond'])->name('sessions.respond');
 
 //Character Route
 Route::get('/character', [CharacterController::class, 'index'])->name('character.index');

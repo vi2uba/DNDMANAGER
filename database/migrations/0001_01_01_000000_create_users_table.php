@@ -38,13 +38,18 @@ return new class extends Migration
         });
 
         DB::table('users')->insert([
-            'name' => 'vinni',
-            'email' => 'vinniuba1@gmail.com',
-            'password' => bcrypt('password'),
+            [
+                'name' => 'vinni',
+                'email' => 'vinniuba1@gmail.com',
+                'password' => bcrypt('password'),
+            ],
+            [
+                'name' => 'vinni',
+                'email' => 'vinniuba2@gmail.com',
+                'password' => bcrypt('password'),
+            ]
         ]);
     }
-
-    
 
     /**
      * Reverse the migrations.
