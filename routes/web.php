@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\CampaignController;
+use App\Http\Controllers\CharacterController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\NotificationController;
@@ -31,6 +32,15 @@ Route::get('/campaign/{id}', [CampaignController::class, 'show'])->name('campaig
 Route::get('/campaign/{id}/edit', [CampaignController::class, 'edit'])->name('campaign.edit');
 Route::put('/campaign/{id}', [CampaignController::class, 'update'])->name('campaign.update');
 Route::delete('/campaign/{id}', [CampaignController::class, 'destroy'])->name('campaign.destroy');
+
+//Character Route
+Route::get('/character', [CharacterController::class, 'index'])->name('character.index');
+Route::get('/character/create', [CharacterController::class, 'create'])->name('character.create');
+Route::post('/character', [CharacterController::class, 'store'])->name('character.store');
+Route::get('/character/{id}', [CharacterController::class, 'show'])->name('character.show');
+Route::get('/character/{id}/edit', [CharacterController::class, 'edit'])->name('character.edit');
+Route::put('/character/{id}', [CharacterController::class, 'update'])->name('character.update');
+Route::delete('/character/{id}', [CharacterController::class, 'destroy'])->name('character.destroy');
 
 //User Route
 Route::get('/user', [UserController::class, 'index'])->name('user.index');
