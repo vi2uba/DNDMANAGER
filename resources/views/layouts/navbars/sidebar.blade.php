@@ -18,6 +18,12 @@
                     <p>{{ __('Campaigns') }}</p>
                 </a>
             </li>
+            <li @if ($pageSlug == 'character') class="active " @endif>
+                <a href="{{ route('character.index') }}">
+                    <i class="tim-icons icon-chart-pie-36"></i>
+                    <p>{{ __('Characters') }}</p>
+                </a>
+            </li>
             <li>
                 <a data-toggle="collapse" href="#UserModules" aria-expanded="true">
                     <i class="fab fa-laravel" ></i>
